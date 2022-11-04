@@ -1,0 +1,99 @@
+<div>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white text-bold" href="#">writeUp</a>
+        </div>
+    </nav>
+    <div class=" landingpageimg">
+        <div class="text">
+            <p class="uppertext">what's On your</p>
+            <p class="lowertext">MIND!</p>
+
+        </div>
+        <div class="buttons">
+            <!-- <button class="signin btn btn-outline-secondary">SignIn</button> -->
+            <!-- <button class="signup btn btn-outline-secondary">SignUp</button> -->
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="signin btn btn-outline-secondary" data-bs-toggle="modal"
+                data-bs-target="#exampleModalsignin">
+                SignIn
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalsignin" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">welcome</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-success">Submit</button> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="signup btn btn-outline-secondary" data-bs-toggle="modal"
+                data-bs-target="#exampleModalsignup">
+                SignUp
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalsignup" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="reactiveForm">
+                                <label for="fname">First Name:</label>
+                                <input class="form-control" type="text" id="fname" placeholder="your name..."><br>
+                                
+                                <label for="lname">Last Name:</label>
+                                <input class="form-control" type="text" id="lname" placeholder="your last name..."><br>
+                                
+                                <label for="uname">Username:</label>
+                                <input class="form-control" type="text" id="uname" placeholder="username"><br>
+                                
+                                <label for="country">Country:</label>
+                                <select class="form-control" id="country" name="country" >
+                                  <option   value="australia">Australia</option>
+                                  <option value="canada">Canada</option>
+                                  <option value="usa">USA</option>
+                                  <option value="india">India</option>
+                                  <option value="uk">UK</option>
+                                </select><br>
+    
+                                <label for="dob">Date of Birth:</label>
+                                <input class="form-control" type="date"><br>
+    
+                                <label for="gender">Gender:</label>
+                                <input class="ms-5"  type="radio" id="Female" value="Female" name="gender">
+                                <label for="Female">feMale</label>
+                                <input class="ms-5"  type="radio" id="Male" value="Male" name="gender">
+                                <label for="Male">Male</label>
+    
+                            </form>
+    
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-success" type="submit" value="Submit" id="btn" >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
