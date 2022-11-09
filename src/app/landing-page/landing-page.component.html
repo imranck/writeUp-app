@@ -30,10 +30,19 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        </div>
-                        <div class="modal-footer">
-                            <!-- <button type="button" class="btn btn-success">Submit</button> -->
+                            <form [formGroup]="loginForm" (ngSubmit)="login()" >
+                                <label for="logemail">Email:</label>
+                                <input class="form-control" type="email" id="logemail" placeholder="username" formControlName="email"><br>
 
+                                <label for="logpswd">Password:</label>
+                                <input class="form-control" type="password" id="logpswd" placeholder="password" formControlName="password"><br>
+                                <div class="modal-footer">
+                                    <!-- <button type="button" class="btn btn-success">Submit</button> -->
+                                    <input class="btn btn-success" type="submit" value="Submit" id="btn" [disabled]="!loginForm.valid" >
+
+                                </div>
+        
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -56,18 +65,21 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form [formGroup]="reactiveForm">
+                            <form [formGroup]="reactiveForm" (ngSubmit)="signin()">
                                 <label for="fname">First Name:</label>
-                                <input class="form-control" type="text" id="fname" placeholder="your name..."><br>
+                                <input class="form-control" type="text" id="fname" placeholder="your name..." formControlName="firstname"><br>
                                 
                                 <label for="lname">Last Name:</label>
-                                <input class="form-control" type="text" id="lname" placeholder="your last name..."><br>
+                                <input class="form-control" type="text" id="lname" placeholder="your last name..." formControlName="lastname"><br>
                                 
-                                <label for="uname">Username:</label>
-                                <input class="form-control" type="text" id="uname" placeholder="username"><br>
+                                <label for="email">Email:</label>
+                                <input class="form-control" type="email" id="email" placeholder="username" formControlName="email" #uemail><br>
                                 
+                                <label for="pswd">Password:</label>
+                                <input class="form-control" type="password" id="pswd" placeholder="password" formControlName="password" #upswd><br>
+
                                 <label for="country">Country:</label>
-                                <select class="form-control" id="country" name="country" >
+                                <select class="form-control" id="country" formControlName="country" >
                                   <option   value="australia">Australia</option>
                                   <option value="canada">Canada</option>
                                   <option value="usa">USA</option>
@@ -76,20 +88,20 @@
                                 </select><br>
     
                                 <label for="dob">Date of Birth:</label>
-                                <input class="form-control" type="date"><br>
+                                <input class="form-control" type="date" formControlName="dateofbirth"><br>
     
                                 <label for="gender">Gender:</label>
-                                <input class="ms-5"  type="radio" id="Female" value="Female" name="gender">
+                                <input class="ms-5"  type="radio" id="Female" value="Female"  formControlName="gender">
                                 <label for="Female">feMale</label>
-                                <input class="ms-5"  type="radio" id="Male" value="Male" name="gender">
+                                <input class="ms-5"  type="radio" id="Male" value="Male" formControlName="gender" >
                                 <label for="Male">Male</label>
     
+                                <div class="modal-footer">
+                                    <input class="btn btn-success" type="submit" value="Submit" id="btn" [disabled]="!reactiveForm.valid" (click)="authService.register(uemail.value,upswd.value)" >
+                                </div>
+        
                             </form>
     
-                        </div>
-                        <div class="modal-footer">
-                            <input class="btn btn-success" type="submit" value="Submit" id="btn" >
-
                         </div>
                     </div>
                 </div>

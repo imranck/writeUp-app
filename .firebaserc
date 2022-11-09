@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angular-4d5c6"
+  },
+  "targets": {
+    "angular-4d5c6": {
+      "hosting": {
+        "WriteUp": [
+          "angular-4d5c6"
+        ]
+      }
+    }
+  }
+}
