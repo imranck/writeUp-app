@@ -30,7 +30,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form [formGroup]="loginForm" (ngSubmit)="login()" >
+                            <form [formGroup]="loginForm" (ngSubmit)="Login()" >
                                 <label for="logemail">Email:</label>
                                 <input class="form-control" type="email" id="logemail" placeholder="username" formControlName="email"><br>
 
@@ -65,7 +65,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form [formGroup]="reactiveForm" (ngSubmit)="signin()">
+                            <form [formGroup]="reactiveForm" (ngSubmit)="SignUp()">
                                 <label for="fname">First Name:</label>
                                 <input class="form-control" type="text" id="fname" placeholder="your name..." formControlName="firstname"><br>
                                 
@@ -97,7 +97,7 @@
                                 <label for="Male">Male</label>
     
                                 <div class="modal-footer">
-                                    <input class="btn btn-success" type="submit" value="Submit" id="btn" [disabled]="!reactiveForm.valid" (click)="authService.register(uemail.value,upswd.value)" >
+                                    <input class="btn btn-success" type="submit" value="Submit" id="regbtn" [disabled]="!reactiveForm.valid" (click)="authService.Register(uemail.value,upswd.value)" >
                                 </div>
         
                             </form>

@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore,AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { User } from './user';
@@ -10,9 +10,12 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  userData:any;
+  userData: any;
 
-  constructor(private afAuth:AngularFireAuth,private toast:HotToastService,private afs:AngularFirestore,private fireauth: AngularFireAuth, private router: Router,public ngZone:NgZone) {
+  constructor(private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private router: Router,
+    public ngZone: NgZone) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -23,10 +26,10 @@ export class AuthenticationService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
-   }
+  }
 
-  login(email: string, password: string) {
-    this.fireauth.signInWithEmailAndPassword(email, password).then((result) => {
+  Signin(email: string, password: string) {
+    this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
       this.SetUserData(result.user);
       this.afAuth.authState.subscribe((user) => {
         if (user) {
@@ -34,17 +37,19 @@ export class AuthenticationService {
         }
       });
     })
-    .catch((error) => {
-      window.alert(error.message);
-    });
+      .catch((error) => {
+        window.alert(error.message);
+      });
   }
 
-  register(email:any,password:any) {
-    this.fireauth.createUserWithEmailAndPassword(email,password).then((result) => {      
+
+
+  Register(email: any, password: any) {
+    this.afAuth.createUserWithEmailAndPassword(email, password).then((result) => {
       this.SetUserData(result.user);
       alert('Registration Successfull')
       this.router.navigate(['landingpage']);
-    }).catch((error)=>{
+    }).catch((error) => {
       window.alert(error.message);
     });
   }
