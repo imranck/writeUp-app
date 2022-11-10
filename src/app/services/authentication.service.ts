@@ -12,43 +12,47 @@ import { User } from './user';
 export class AuthenticationService {
   userData:any;
 
-  constructor(private toast:HotToastService,private afs:AngularFirestore,private fireauth: AngularFireAuth, private router: Router,public ngZone:NgZone) { }
+  constructor(private afAuth:AngularFireAuth,private toast:HotToastService,private afs:AngularFirestore,private fireauth: AngularFireAuth, private router: Router,public ngZone:NgZone) {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
+      }
+    });
+   }
 
   login(email: string, password: string) {
-    this.fireauth.signInWithEmailAndPassword(email, password).then(() => {
-      localStorage.setItem('token', 'true');
-      this.router.navigate(['home']);
-      this.toast.observe({
-            success: 'logged in successfully',
-            loading: 'logging in',
-            error: 'there was an error'
-          })
-      
-     
-    }, err => {
-      // alert('something went wrong');
-      this.router.navigate(['landingpage'])
+    this.fireauth.signInWithEmailAndPassword(email, password).then((result) => {
+      this.SetUserData(result.user);
+      this.afAuth.authState.subscribe((user) => {
+        if (user) {
+          this.router.navigate(['home']);
+        }
+      });
     })
+    .catch((error) => {
+      window.alert(error.message);
+    });
   }
 
   register(email:any,password:any) {
-    
     this.fireauth.createUserWithEmailAndPassword(email,password).then((result) => {      
-      // this.SetUserData(result.user);
+      this.SetUserData(result.user);
       alert('Registration Successfull')
       this.router.navigate(['landingpage']);
-    }, err => {
-      alert(err.message);
-      this.router.navigate(['landingpage']);
-    })
-
-
+    }).catch((error)=>{
+      window.alert(error.message);
+    });
   }
+
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
-
     );
     const userData: User = {
       uid: user.uid,
@@ -56,9 +60,14 @@ export class AuthenticationService {
     };
     return userRef.set(userData, {
       merge: true,
-
     });
-    
+  }
+
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['landingpage']);
+    });
   }
 
 }

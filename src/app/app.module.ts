@@ -22,11 +22,13 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {getFirestore,provideFirestore} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { CommonInterceptor } from './interceptors/common.interceptor';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    HomepageComponent
+    HomepageComponent,
+    UserprofileComponent
   ],
   imports: [
     BrowserModule,
